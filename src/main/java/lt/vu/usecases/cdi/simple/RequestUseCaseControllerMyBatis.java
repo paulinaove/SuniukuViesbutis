@@ -5,9 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import lt.vu.usecases.mybatis.dao.CourseMapper;
 import lt.vu.usecases.mybatis.dao.StudentCourseMapper;
 import lt.vu.usecases.mybatis.dao.StudentMapper;
-import lt.vu.usecases.mybatis.model.Course;
-import lt.vu.usecases.mybatis.model.Student;
-import lt.vu.usecases.mybatis.model.StudentCourse;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -30,7 +27,7 @@ public class RequestUseCaseControllerMyBatis {
     @Inject
     private StudentCourseMapper studentCourseMapper;
 
-    public List<lt.vu.usecases.mybatis.model.Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return studentMapper.selectAll();
     }
 

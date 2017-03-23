@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lt.vu.usecases.mybatis.dao.UniversityMapper">
-    <resultMap id="BaseResultMap" type="lt.vu.usecases.mybatis.model.University">
+    <resultMap id="BaseResultMap" type="mybatis.model.University">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
     </resultMap>
@@ -11,12 +11,12 @@
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="lt.vu.usecases.mybatis.model.University" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="mybatis.model.University" useGeneratedKeys="true">
         INSERT INTO public.university (title)
         VALUES (#{title,jdbcType=VARCHAR})
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="lt.vu.usecases.mybatis.model.University">
+    <update id="updateByPrimaryKey" parameterType="mybatis.model.University">
         UPDATE public.university
         SET title = #{title,jdbcType=VARCHAR}
         WHERE id = #{id,jdbcType=INTEGER}

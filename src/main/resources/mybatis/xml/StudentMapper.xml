@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lt.vu.usecases.mybatis.dao.StudentMapper">
-    <resultMap id="BaseResultMap" type="lt.vu.usecases.mybatis.model.Student">
+    <resultMap id="BaseResultMap" type="mybatis.model.Student">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="first_name" jdbcType="VARCHAR" property="firstName"/>
         <result column="last_name" jdbcType="VARCHAR" property="lastName"/>
@@ -23,12 +23,12 @@
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="lt.vu.usecases.mybatis.model.Student" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="mybatis.model.Student" useGeneratedKeys="true">
         INSERT INTO public.student (first_name, last_name, registration_no, university_id)
         VALUES (#{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{registrationNo,jdbcType=VARCHAR}, #{universityId,jdbcType=INTEGER})
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="lt.vu.usecases.mybatis.model.Student">
+    <update id="updateByPrimaryKey" parameterType="mybatis.model.Student">
         UPDATE public.student
         SET first_name = #{firstName,jdbcType=VARCHAR},
         last_name = #{lastName,jdbcType=VARCHAR},
