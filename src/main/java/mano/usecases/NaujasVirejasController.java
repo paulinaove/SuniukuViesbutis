@@ -2,8 +2,8 @@ package mano.usecases;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import mano.entities.Virejas;
-import mano.usecases.dao.VirejasDAO;
+import mano.jpa.entities.Virejas;
+import mano.jpa.dao.VirejasDAO;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;

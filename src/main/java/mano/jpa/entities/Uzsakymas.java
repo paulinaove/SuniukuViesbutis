@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mano.entities;
+package mano.jpa.entities;
 
 import java.io.Serializable;
 import java.util.List;
@@ -131,7 +131,7 @@ public class Uzsakymas implements Serializable {
 
     @Override
     public String toString() {
-        return "mano.entities.Uzsakymas[ id=" + id + " ]";
+        return "mano.jpa.entities.Uzsakymas[ id=" + id + " ]";
     }
     
 }

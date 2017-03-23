@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mano.entities;
+package mano.jpa.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -94,7 +94,7 @@ public class Virejas implements Serializable {
 
     @Override
     public String toString() {
-        return "mano.entities.Virejas[ id=" + id + " ]";
+        return "mano.jpa.entities.Virejas[ id=" + id + " ]";
     }
     
 }

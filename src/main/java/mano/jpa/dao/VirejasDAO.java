@@ -1,13 +1,10 @@
-package mano.usecases.dao;
+package mano.jpa.dao;
 
-import mano.entities.Virejas;
+import mano.jpa.entities.Virejas;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.SynchronizationType;
 import java.util.List;
 
 /**
@@ -26,7 +23,8 @@ public class VirejasDAO {
         entityManager.persist(virejas);
     }
 
-    public List<Virejas> getAllVirejas(){
+    public List<Virejas> getAllVirejas()
+    {
         return entityManager.createNamedQuery("Virejas.findAll", Virejas.class).getResultList();
     }
 
