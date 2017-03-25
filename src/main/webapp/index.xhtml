@@ -13,9 +13,10 @@
 
     <h1>Restoranas</h1>
 
+    <h3>Virėjų sąrašas</h3>
     <h:form>
         <p:fieldset legend="Virėjai" toggleable="true" style="width: 50%">
-            <p:dataTable value="#{naujasVirejasController.getAllVirejas()}" var="virejas">
+            <p:dataTable value="#{naujasVirejasControllerJPA.getAllVirejas()}" var="virejas">
                 <p:column headerText="Nr">
                     <h:outputText value="#{virejas.nr}" />
                 </p:column>
@@ -27,7 +28,6 @@
                 </p:column>
             </p:dataTable>
         </p:fieldset>
-
     </h:form>
 </h:body>
 </html>

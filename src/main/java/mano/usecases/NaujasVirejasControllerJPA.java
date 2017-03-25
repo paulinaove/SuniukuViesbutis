@@ -16,8 +16,8 @@ import java.util.List;
 
 //todo kas čia?
 @Model // tas pats kaip: @Named ir @RequestScoped
-@Slf4j
-public class NaujasVirejasController {
+public class NaujasVirejasControllerJPA
+{
 
     @Getter
     private Virejas virejas = new Virejas();

@@ -13,7 +13,7 @@ import java.util.List;
 @ApplicationScoped
 public class UzsakymasDAO {
 
-    @Inject
+   @Inject
     private EntityManager entityManager;
 
     public void create(Uzsakymas uzsakymas)
