@@ -9,6 +9,8 @@ import mano.mybatis.model.Patiekalasuzsakymas;
 import mano.mybatis.model.Uzsakymas;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -44,12 +46,26 @@ public class UzsakymasControllerMyBatis
     public void createUzsakymas()
     {
         uzsakymas.setOptlock(0);
-        uzsakymasMapper.insert(uzsakymas);
+        try
+        {
+             uzsakymasMapper.insert(uzsakymas);
+        }
+        catch (Exception e)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error",e.getMessage()));
+        }
     }
 
     @Transactional
     public void createPatiekalasUzsakymas()
     {
-        patiekalasuzsakymasMapper.insert(patiekalasuzsakymas);
+        try
+        {
+            patiekalasuzsakymasMapper.insert(patiekalasuzsakymas);
+        }
+        catch (Exception e)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error",e.getMessage()));
+        }
     }
 }
