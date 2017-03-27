@@ -1,6 +1,13 @@
-.ui-widget, .ui-widget .ui-widget {
-    font-size: 90%;
+div > form{
+    width: 500px;
+    float: left;
 }
-fieldset{
-    display: inline-block;
+
+#uzsakymai, #patiekalai{
+
+     margin-left: 50px;
+ }
+
+table{
+    margin-bottom: 20px;
 }

@@ -6,6 +6,8 @@ import mano.jpa.entities.Uzsakymas;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolationException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**

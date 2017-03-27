@@ -14,8 +14,8 @@ public class Uzsakymas {
     private Integer optlock;
     private Integer virejasNr;
 
-    private Virejas virejas;
-    private List<Uzsakymas> uzsakymasList;
+    private Virejas virejasEntity;
+    private List<Patiekalas> patiekalasList;
 
 
 }
