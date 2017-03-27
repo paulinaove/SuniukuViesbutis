@@ -10,7 +10,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="nr" jdbcType="BIGINT" property="nr" />
     <result column="optlock" jdbcType="INTEGER" property="optlock" />
-    <result column="virejas" jdbcType="INTEGER" property="virejas" />
+    <result column="virejas" jdbcType="INTEGER" property="virejasNr" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
