@@ -12,9 +12,9 @@ public class Uzsakymas {
     private Long id;
     private Long nr;
     private Integer optlock;
-    private Integer virejasNr;
+    private Integer virejasnr;
 
-    private Virejas virejasEntity;
+    private Virejas virejas;
     private List<Patiekalas> patiekalasList;
 
 
