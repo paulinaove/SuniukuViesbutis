@@ -39,7 +39,7 @@ import javax.persistence.Table;
     , @NamedQuery(name = "Virejas.findByPavarde", query = "SELECT v FROM Virejas v WHERE v.pavarde = :pavarde")})
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "nr")
 @ToString(of = {"nr", "vardas", "pavarde"})
 public class Virejas implements Serializable {
 

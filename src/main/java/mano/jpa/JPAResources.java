@@ -1,9 +1,5 @@
 package mano.jpa;
 
-/**
- * Created by arturas on 2017-03-25.
- */
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -12,18 +8,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.SynchronizationType;
+
+/**
+ * Created by arturas on 2017-03-25.
+ * PSK 1 laboratorinis
+ */
+
+
 @ApplicationScoped
 public class JPAResources {
+
     @PersistenceUnit
     private EntityManagerFactory emf;
+
     @Produces
-    @RequestScoped // Smalsiems: kodel ne @TransactionScoped? Kada @RequestScoped bus blogai o @TransactionScoped - gerai?
+    @RequestScoped
     private EntityManager createJTAEntityManager() {
-        /*
-         * From JavaDoc: Create a new JTA application-managed EntityManager...
-         */
         return emf.createEntityManager(SynchronizationType.SYNCHRONIZED);
     }
+
     private void closeUnsynchronizedEntityManager(@Disposes EntityManager em) {
         em.close();
     }

@@ -18,7 +18,6 @@ import javax.persistence.*;
  *
  * @author arturas
  */
-//TODO lombok
 @Entity
 @Table(name = "uzsakymas")
 @NamedQueries({
@@ -28,7 +27,7 @@ import javax.persistence.*;
     , @NamedQuery(name = "Uzsakymas.findByOptlock", query = "SELECT u FROM Uzsakymas u WHERE u.optlock = :optlock")})
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "nr")
 @ToString(of = {"nr", "virejas",})
 public class Uzsakymas implements Serializable {
 
@@ -45,7 +44,6 @@ public class Uzsakymas implements Serializable {
     @Column(name = "optlock")
     private int optlock;
 
-    //todo kaip čia veikia?
     @JoinTable(name = "patiekalasuzsakymas", joinColumns = {
         @JoinColumn(name = "uzsakymas", referencedColumnName = "nr")}, inverseJoinColumns = {
         @JoinColumn(name = "patiekalas", referencedColumnName = "nr")})

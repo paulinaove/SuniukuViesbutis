@@ -1,6 +1,6 @@
 # Java EE starter project
 Project is based on *Maven*, thus import project to IntelliJ IDEA by:
-* File -> Open... -> pick `pom.xml` file.
+* File -> Open... -> pick `pom.myb.xml` file.
 
 ## Application Server configuration
 
@@ -38,7 +38,7 @@ Long version: [TomEE and IntelliJ IDEA](http://tomee.apache.org/tomee-and-intell
     * Press "Fix" again, choose "exploded war" as artifact
     * In tab "Deployment", for "Use custom context root" enter: **JavaEEstarter**
 4. Run the server for the first time (it will fail - that is OK), then stop the server.
-5. Open this file with text editor: `wlp/usr/servers/defaultServer/server.xml`, 
+5. Open this file with text editor: `wlp/usr/servers/defaultServer/server.myb.xml`, 
    add `classloader` and `library` tags:
 ```
     ...

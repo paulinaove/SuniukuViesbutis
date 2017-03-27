@@ -9,9 +9,9 @@ import java.util.List;
 
 /**
  * Created by arturas on 2017-03-20.
+ * PSK 1 laboratorinis
  */
 
-//todo kas čia yra
 @ApplicationScoped
 public class VirejasDAO {
 

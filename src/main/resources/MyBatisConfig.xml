@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?myb.xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        PUBLIC "-//mano.mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="mybatis.model.Virejas" alias="Virejas"/>
-        <typeAlias type="mybatis.model.Patiekalas" alias="Patiekalas"/>
-        <typeAlias type="mybatis.model.Uzsakymas" alias="Uzsakymas"/>
-        <typeAlias type="mybatis.model.Patiekalasuzsakymas" alias="Patiekalasuzsakymas"/>
+        <typeAlias type="mano.mybatis.model.Virejas" alias="Virejas"/>
+        <typeAlias type="mano.mybatis.model.Patiekalas" alias="Patiekalas"/>
+        <typeAlias type="mano.mybatis.model.Uzsakymas" alias="Uzsakymas"/>
+        <typeAlias type="mano.mybatis.model.Patiekalasuzsakymas" alias="Patiekalasuzsakymas"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -19,9 +19,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis.xml.PatiekalasMapper.xml"/>
-        <mapper resource="mybatis/xml/StudentMapper.xml"/>
-        <mapper resource="mybatis/xml/StudentCourseMapper.xml"/>
-        <mapper resource="mybatis/xml/UniversityMapper.xml"/>
+        <mapper resource="mybatis/PatiekalasMapper.xml"/>
+        <mapper resource="mybatis/PatiekalasuzsakymasMapper.xml"/>
+        <mapper resource="mybatis/UzsakymasMapper.xml"/>
+        <mapper resource="mybatis/VirejasMapper.xml"/>
     </mappers>
 </configuration>
