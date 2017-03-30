@@ -6,7 +6,7 @@
     <!-- H2 Database -->
     <Resource id="StudentsDataSource" type="DataSource">
         JdbcDriver = com.mysql.jdbc.Driver
-        JdbcUrl = jdbc:mysql://localhost:3306/restoranas
+        JdbcUrl = jdbc:mysql://localhost:3306/SuniukuViesbutis
         UserName = root
         InitialSize = 1
         MaxActive = 10

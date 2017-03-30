@@ -6,34 +6,28 @@
 <generatorConfiguration>
     <context id="restoranas" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/restoranas"
+                        connectionURL="jdbc:mysql://localhost:3306/SuniukuViesbutis"
                         userId="root"
                         password="">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="mybatis.model" targetProject="MAVEN" />
+        <javaModelGenerator targetPackage="suniukai.mybatis.model" targetProject="MAVEN" />
 
         <!-- Anotacijų variantas - mažiau galimybių, bet paprastesnis -->
         <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="lt.vu.usecases.mano.mybatis.dao" targetProject="MAVEN" />-->
 
         <!-- XML variantas - daugiau galimybių -->
-        <sqlMapGenerator targetPackage="mybatis.xml" targetProject="MAVEN" />
-        <javaClientGenerator type="XMLMAPPER" targetPackage="mybatis.dao" targetProject="MAVEN" />
+        <sqlMapGenerator targetPackage="suniukai.mybatis.xml" targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="suniukai.mybatis.dao" targetProject="MAVEN" />
 
 
-        <table schema="public" tableName="virejas">
-            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
+        <table schema="public" tableName="darbuotojas">
         </table>
-        <table schema="public" tableName="patiekalas">
-            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
+        <table schema="public" tableName="suniukas">
         </table>
-        <table schema="public" tableName="uzsakymas">
-            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
+        <table schema="public" tableName="viesbutis">
         </table>
-        <table schema="public" tableName="patiekalasuzsakymas">
+        <table schema="public" tableName="darbuotoju_suniuku_sarasas">
         </table>
     </context>
 </generatorConfiguration>

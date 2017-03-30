@@ -19,106 +19,23 @@
     </h:form>
 
     <div class="data">
-        <h:form id="virejai">
-            <h3>Virejai</h3>
-            <p:dataTable value="#{virejasControllerJPA.getAllVirejas()}" var="virejas" tableStyle="width:auto">
+
+        <h:form id="pxbl">
+            <h3>darbuotojai</h3>
+            <p:dataTable value="#{controller.darbuotojas}" var="darbuotojas" tableStyle="width:auto">
                 <p:column headerText="Nr">
-                    <h:outputText value="#{virejas.nr}" />
+                    <h:outputText value="#{darbuotojas.id}" />
                 </p:column>
                 <p:column headerText="Vardas">
-                    <h:outputText value="#{virejas.vardas}" />
+                    <h:outputText value="#{darbuotojas.vardas}" />
                 </p:column>
                 <p:column headerText="Pavardė">
-                    <h:outputText value="#{virejas.pavarde}" />
+                    <h:outputText value="#{darbuotojas.pavarde}" />
                 </p:column>
             </p:dataTable>
 
-            <h3>Pridėti naują virėją</h3>
-            <h:panelGrid columns="3">
-                <p:outputLabel for="virejasNr" value="Nr"/>
-                <p:inputText id="virejasNr" value="#{virejasControllerJPA.virejas.nr}"/>
-                <p:message for="virejasNr"/>
-                <p:outputLabel for="virejasVardas" value="Vardas"/>
-                <p:inputText id="virejasVardas" value="#{virejasControllerJPA.virejas.vardas}"/>
-                <p:message for="virejasVardas"/>
-                <p:outputLabel for="virejasPavarde" value="Pavardė"/>
-                <p:inputText id="virejasPavarde" value="#{virejasControllerJPA.virejas.pavarde}"/>
-                <p:message for="virejasPavarde"/>
-            </h:panelGrid>
-            <p:commandButton value="Pridėti virėją"
-                             actionListener="#{virejasControllerJPA.createVirejas()}"
-                             ajax="false"/>
         </h:form>
 
-        <h:form id="patiekalai">
-            <h3>Patiekalai</h3>
-            <p:dataTable value="#{patiekalasControllerJPA.getAllPatiekalas()}" var="patiekalas" tableStyle="width:auto">
-                <p:column headerText="Nr">
-                    <h:outputText value="#{patiekalas.nr}" />
-                </p:column>
-                <p:column headerText="Pavadinimas">
-                    <h:outputText value="#{patiekalas.pavadinimas}" />
-                </p:column>
-            </p:dataTable>
-
-            <h3>Pridėti naują patiekalą</h3>
-            <h:panelGrid columns="3">
-                <p:outputLabel for="patiekalasNr" value="Nr"/>
-                <p:inputText id="patiekalasNr" value="#{patiekalasControllerJPA.patiekalas.nr}"/>
-                <p:message for="patiekalasNr"/>
-                <p:outputLabel for="patiekalasPavadinimas" value="Pavadinimas"/>
-                <p:inputText id="patiekalasPavadinimas" value="#{patiekalasControllerJPA.patiekalas.pavadinimas}"/>
-                <p:message for="patiekalasPavadinimas"/>
-            </h:panelGrid>
-            <p:commandButton value="Pridėti patiekalą"
-                             actionListener="#{patiekalasControllerJPA.createPatiekalas()}"
-                             ajax="false"/>
-        </h:form>
-
-        <h:form id="uzsakymai">
-            <h3>Užsakymai</h3>
-            <p:dataTable value="#{uzsakymasControllerMyBatis.getAllUzsakymas()}" var="uzsakymas" tableStyle="width:auto">
-                <p:column headerText="Nr">
-                    <h:outputText value="#{uzsakymas.nr}" />
-                </p:column>
-                <p:column headerText="Patiekalai">
-                    <ui:repeat value="#{uzsakymas.patiekalasList}" var="patiekalas">
-                        <h:outputText value="#{patiekalas.pavadinimas}&lt;br /&gt;" escape="false"/>
-                    </ui:repeat>
-                </p:column>
-                <p:column headerText="Virejas">
-                    <h:outputText value="#{uzsakymas.virejas.vardas} #{uzsakymas.virejas.pavarde}" />
-                </p:column>
-            </p:dataTable>
-
-            <h3>Pridėti naują užsakymą</h3>
-            <h:panelGrid columns="2">
-                <p:outputLabel for="uzsakymasNr" value="Nr"/>
-                <p:inputText id="uzsakymasNr" value="#{uzsakymasControllerMyBatis.uzsakymas.nr}"/>
-                <p:message for="uzsakymasNr"/>
-                <br/>
-                <p:outputLabel for="uzsakymasVirejasNr" value="Virėjo nr"/>
-                <p:inputText id="uzsakymasVirejasNr" value="#{uzsakymasControllerMyBatis.uzsakymas.virejasnr}"/>
-                <p:message for="uzsakymasVirejasNr"/>
-            </h:panelGrid>
-            <p:commandButton value="Pridėti užsakymą"
-                             actionListener="#{uzsakymasControllerMyBatis.createUzsakymas()}"
-                             ajax="false"/>
-            <br/><br/><br/>
-            <h3>Pridėti patiekalą prie užsakymo</h3>
-            <h:panelGrid columns="2">
-                <p:outputLabel for="uzsakymasPatiekalasPN" value="Patiekalo nr"/>
-                <p:inputText id="uzsakymasPatiekalasPN" value="#{uzsakymasControllerMyBatis.patiekalasuzsakymas.patiekalas}"/>
-                <p:message for="uzsakymasPatiekalasPN"/>
-                <br/>
-                <p:outputLabel for="uzsakymasPatiekalasVN" value="Užsakymo nr"/>
-                <p:inputText id="uzsakymasPatiekalasVN" value="#{uzsakymasControllerMyBatis.patiekalasuzsakymas.uzsakymas}"/>
-                <p:message for="uzsakymasPatiekalasVN"/>
-            </h:panelGrid>
-            <p:commandButton value="Pridėti patiekalą prie užsakymo"
-                             actionListener="#{uzsakymasControllerMyBatis.createPatiekalasUzsakymas()}"
-                             ajax="false"/>
-        </h:form>
     </div>
 
 </h:body>
