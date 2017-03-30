@@ -21,7 +21,6 @@ import java.util.List;
  * PSK 1 laboratorinis
  */
 
-//todo išsiaškinti šitą
 @Model // tas pats kaip: @Named ir @RequestScoped
 public class VirejasControllerJPA
 {
