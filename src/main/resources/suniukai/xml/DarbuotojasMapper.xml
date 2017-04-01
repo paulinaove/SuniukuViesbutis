@@ -12,6 +12,8 @@
     <result column="Pavarde" jdbcType="VARCHAR" property="pavarde" />
     <result column="Pareigos" jdbcType="VARCHAR" property="pareigos" />
     <result column="Viesbutis" jdbcType="VARCHAR" property="viesbutis" />
+    <!--<association property="viesbutis" resultMap="mybatis.dao.ViesbutisMapper.BaseResultMap" columnPrefix="viesbutis_"/>-->
+    <collection property="suniukai" javaType="ArrayList" column="id" ofType="Suniukas" select="selectSuniukusDarbuotojui"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
@@ -64,5 +66,14 @@
     -->
     select ID, Vardas, Pavarde, Pareigos, Viesbutis
     from darbuotojas
+  </select>
+
+  <select id="selectSuniukusDarbuotojui" resultType="Suniukas">
+    SELECT s.gyvunoID,
+    s.vardas,
+    s.veisle
+    FROM SuniukuViesbutis.Suniukas s
+    JOIN SuniukuViesbutis.Darbuotoju_Suniuku_Sarasas ds on s.GyvunoID = ds.SuniukoID
+    WHERE ds.DarbuotojoID = #{id,jdbcType=VARCHAR}
   </select>
 </mapper>

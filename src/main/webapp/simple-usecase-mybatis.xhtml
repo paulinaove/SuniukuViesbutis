@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+    <h:head>
+        <h:outputStylesheet name="css/styles.css" />
+        <title>Naujo darbuotojo registracija</title>
+    </h:head>
+    <h:body>
+        <h1>Darbuotojų sąrašas</h1>
+        <h:form>
+            <p:fieldset legend="Visi darbuotojai" toggleable="true" style="width: 50%">
+                <p:dataTable value="#{requestUseCaseControllerMyBatis.getAllDarbuotojas()}" var="darb">
+                    <p:column headerText="Darbuotojas">
+                        <h:outputText value="#{darb.id} #{darb.vardas}" />
+                    </p:column>
+                    <p:column headerText="Suniukai">
+                    <ui:repeat var="suniukas" value="#{darb.suniukai}">
+                    <h:outputText value="#{suniukas.vardas} " />
+                    </ui:repeat>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+
+            <h2>Sukurti naują darbutoją ir šuniuką</h2>
+            <table>
+                <tr>
+                    <td>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="id" value="ID"/>
+                            <p:inputText id="id" value="#{requestUseCaseControllerMyBatis.darbuotojas.id}"/>
+                            <p:message for="id"/>
+                            <p:outputLabel for="vardas" value="Vardas"/>
+                            <p:inputText id="vardas" value="#{requestUseCaseControllerMyBatis.darbuotojas.vardas}"/>
+                            <p:message for="vardas"/>
+                            <p:outputLabel for="pavarde" value="Pavardė"/>
+                            <p:inputText id="pavarde" value="#{requestUseCaseControllerMyBatis.darbuotojas.pavarde}"/>
+                            <p:message for="pavarde"/>
+                            <p:outputLabel for="pareigos" value="Pareigos"/>
+                            <p:inputText id="pareigos" value="#{requestUseCaseControllerMyBatis.darbuotojas.pareigos}"/>
+                            <p:message for="pareigos"/>
+                        </h:panelGrid>
+                    </td>
+                    <td>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="gyvunoId" value="Šuniuko Id"/>
+                            <p:inputText id="gyvunoId" value="#{requestUseCaseControllerMyBatis.suniukas.gyvunoid}"/>
+                            <p:message for="gyvunoId"/>
+                            <p:outputLabel for="vardasS" value="Šuniuko vardas"/>
+                            <p:inputText id="vardasS" value="#{requestUseCaseControllerMyBatis.suniukas.vardas}"/>
+                            <p:message for="vardasS"/>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+            <p:commandButton value="Sukurti darbuotoją ir šuniuką"
+                             actionListener="#{requestUseCaseControllerMyBatis.createDarbuotojasSuniukas()}"
+                             ajax="false"/>
+            <p:messages globalOnly="true"/>
+
+        </h:form>
+    </h:body>
+</html>
+

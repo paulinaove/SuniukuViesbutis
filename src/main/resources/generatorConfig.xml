@@ -7,8 +7,8 @@
     <context id="restoranas" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/SuniukuViesbutis"
-                        userId="root"
-                        password="">
+                        userId="superumP"
+                        password="krabas">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="suniukai.mybatis.model" targetProject="MAVEN" />
