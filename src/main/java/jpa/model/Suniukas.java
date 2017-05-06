@@ -9,8 +9,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.johnzon.mapper.JohnzonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = "gyvunoID")
 @ToString(of = "gyvunoID")
+//@XmlRootElement
 public class Suniukas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +47,17 @@ public class Suniukas implements Serializable {
     @Column(name = "Veisle")
     private String veisle;
     @ManyToMany(mappedBy = "suniukasList")
+   @JohnzonIgnore
+//    @XmlTransient
     private List<Darbuotojas> darbuotojasList = new ArrayList<Darbuotojas>();
     @JoinColumn(name = "Viesbutis", referencedColumnName = "Kodas")
     @ManyToOne
+    @JohnzonIgnore
+  // @XmlTransient
     private Viesbutis viesbutis;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
 
 }

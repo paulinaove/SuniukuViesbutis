@@ -26,4 +26,13 @@ public class SuniukasDAO {
     public List<Suniukas> getAllSuniukas() {
         return em.createNamedQuery("Suniukas.findAll", Suniukas.class).getResultList();
     }
+
+    public void atnaujintiIrFlush(Suniukas suniukas){
+        em.merge(suniukas);
+        em.flush();
+    }
+
+    public Suniukas rastiPagalId(String gyvunoID){
+        return em.find(Suniukas.class, gyvunoID);
+    }
 }

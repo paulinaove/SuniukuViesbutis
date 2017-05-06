@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <h:outputStylesheet name="css/styles.css" />
+    <title>Koreguoti Šuniuką su Optimistic Locking</title>
+</h:head>
+
+<h:body>
+    <h1>Koreguoti Šuniuką su Optimistic Locking</h1>
+
+    <h:form id="form">
+        <p:fieldset id="list" style="width: 50%">
+            <f:facet name="legend">
+                Visi suniukai
+                <p:commandButton value="Refresh" icon="ui-icon-arrowrefresh-1-e"
+                                 actionListener="#{editSuniukasController.perkrauti}"
+                                 update=":form:list"/>
+            </f:facet>
+
+            <p:dataTable value="#{editSuniukasController.visiSuniukai}" var="suniukas" tableStyle="table-layout: auto">
+                <p:column headerText="Suniukas">
+                    #{suniukas.gyvunoID} #{suniukas.vardas} #{suniukas.veisle}
+                </p:column>
+                <p:column headerText="Darbuotojai">
+                    <ui:repeat var="darbuotojas" value="#{suniukas.darbuotojasList}" varStatus="darbuotojasStatus">
+                        #{darbuotojas.vardas}<h:outputText value=", " rendered="#{not darbuotojasStatus.last}"/>
+                    </ui:repeat>
+                </p:column>
+                <p:column headerText="Viesbutis">
+                    #{suniukas.viesbutis.pavadinimas}
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Koreguoti" icon="ui-icon-pencil"
+                                     actionListener="#{editSuniukasController.paruostiPakeitimui(suniukas)}"
+                                     update=":form:suniukasDetail"
+                                     oncomplete="PF('suniukasDialog').show()"/>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+
+                <p:dialog header="Koreguoti Šuniuką" widgetVar="suniukasDialog" modal="true" closable="true" resizable="false" closeOnEscape="true">
+                    <p:outputPanel id="suniukasDetail">
+                        <h:outputText value="Nebuvo pasirinkta nei vieno šuniuko!" rendered="#{empty editSuniukasController.pasirinktasSuniukas}" />
+                        <p:panelGrid  columns="3" rendered="#{not empty editSuniukasController.pasirinktasSuniukas}"
+                                      columnClasses="label,value" styleClass="ui-noborder">
+                            <p:outputLabel for="vardas" value="Vardas"/>
+                            <p:inputText id="vardas" value="#{editSuniukasController.pasirinktasSuniukas.vardas}"/>
+                            <p:message for="vardas"/>
+
+                            <p:outputLabel for="veisle" value="Veislė:"/>
+                            <p:inputText id="veisle" value="#{editSuniukasController.pasirinktasSuniukas.veisle}"/>
+                            <p:message for="veisle"/>
+
+                            <p:outputLabel for="viesbutis" value="Viešbutis:"/>
+                            <p:selectOneMenu id="viesbutis" value="#{editSuniukasController.pasirinktasSuniukas.viesbutis}"
+                                             converter="omnifaces.SelectItemsIndexConverter">
+                                <f:selectItem itemLabel="Pasirink viešbutį:" itemValue="#{null}"/>
+                                <f:selectItems value="#{editSuniukasController.visiViesbuciai}" var="viesbutis"
+                                               itemLabel="#{viesbutis.pavadinimas}" itemValue="#{viesbutis}"/>
+                            </p:selectOneMenu>
+                            <p:message for="viesbutis"/>
+
+                            <h:outputText value="Darbuotojai:"/>
+                            <p:selectCheckboxMenu id="darbuotojai" value="#{editSuniukasController.pasirinktasSuniukas.darbuotojasList}"
+                                                  converter="omnifaces.SelectItemsIndexConverter"
+                                                  label="Pasirink darbuotojus:" updateLabel="true"
+                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                <f:attribute name="collectionType" value="java.util.ArrayList" /> <!-- Kitaip JSF bando kurti naują Hibernate PersistentBag ir būna bėdos... -->
+                                <f:selectItems value="#{editSuniukasController.visiDarbuotojai}" var="darbuotojas"
+                                               itemLabel="#{darbuotojas.vardas}" itemValue="#{darbuotojas}" />
+                            </p:selectCheckboxMenu>
+                            <p:message for="darbuotojai"/>
+
+                            <h:outputText value="Opt. version:" />
+                            <h:outputText value="#{editSuniukasController.pasirinktasSuniukas.optLockVersion}" style="font-weight: bold"/>
+                        </p:panelGrid>
+
+                        <p:commandButton value="Atnaujinti" actionListener="#{editSuniukasController.atnaujintiPasirinktaSuniuka}"
+                                         rendered="#{empty editSuniukasController.konfliktinisSuniukas}"
+                                         icon="ui-icon-check" style="margin-top: 1em"
+                                         update=":form:suniukasDetail :form:list"
+                                         oncomplete="if (args &amp;&amp; !args.validationFailed) PF('suniukasDialog').hide()" />
+
+                        <p:panelGrid  columns="2" rendered="#{not empty editSuniukasController.konfliktinisSuniukas}"
+                                      columnClasses="label,value" styleClass="ui-noborder" style="margin-top: 1em">
+                            <f:facet name="header">Konfliktinis šuniukas</f:facet>
+
+                            <h:outputText value="Vardas:"/>
+                            <h:outputText value="#{editSuniukasController.konfliktinisSuniukas.vardas}"/>
+
+                            <h:outputText value="Veislė:"/>
+                            <h:outputText value="#{editSuniukasController.konfliktinisSuniukas.veisle}"/>
+
+                            <h:outputText value="Viešbutis:"/>
+                            <h:outputText value="#{editSuniukasController.konfliktinisSuniukas.viesbutis.pavadinimas}" />
+
+                            <h:outputText value="Darbuotojai:"/>
+                            <ui:repeat var="darbuotojas" value="#{editSuniukasController.konfliktinisSuniukas.darbuotojasList}" varStatus="darbuotojasStatus">
+                                #{darbuotojas.vardas}<h:outputText value=", " rendered="#{not darbuotojasStatus.last}"/>
+                            </ui:repeat>
+
+                            <h:outputText value="Opt. version:" />
+                            <h:outputText value="#{editSuniukasController.konfliktinisSuniukas.optLockVersion}" style="font-weight: bold"/>
+                        </p:panelGrid>
+
+                        <p:commandButton value="Perrašyti" actionListener="#{editSuniukasController.uzrasytiAntVirsaus}"
+                                         rendered="#{not empty editSuniukasController.konfliktinisSuniukas}"
+                                         icon="ui-icon-notice" style="margin-top: 1em"
+                                         update=":form:suniukasDetail :form:list"
+                                         oncomplete="if (args &amp;&amp; !args.validationFailed) PF('suniukasDialog').hide()" />
+                    </p:outputPanel>
+                </p:dialog>
+
+
+        <p:messages globalOnly="true"/>
+    </h:form>
+
+</h:body>
+</html>
+

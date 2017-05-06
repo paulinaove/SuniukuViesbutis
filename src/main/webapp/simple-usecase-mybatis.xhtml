@@ -15,11 +15,11 @@
             <p:fieldset legend="Visi darbuotojai" toggleable="true" style="width: 50%">
                 <p:dataTable value="#{requestUseCaseControllerMyBatis.getAllDarbuotojas()}" var="darb">
                     <p:column headerText="Darbuotojas">
-                        <h:outputText value="#{darb.id} #{darb.vardas}" />
+                        <h:outputText value="#{darb.id} #{darb.vardas} #{darb.pavarde} #{darb.pareigos}" />
                     </p:column>
                     <p:column headerText="Suniukai">
                     <ui:repeat var="suniukas" value="#{darb.suniukai}">
-                    <h:outputText value="#{suniukas.vardas} " />
+                    <h:outputText value="#{suniukas.gyvunoid} #{suniukas.vardas} " />
                     </ui:repeat>
                     </p:column>
                 </p:dataTable>
