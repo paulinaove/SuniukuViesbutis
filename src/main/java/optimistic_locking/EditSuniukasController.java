@@ -1,6 +1,7 @@
 package optimistic_locking;
 
 
+import interceptors.loggingInterceptor;
 import jpa.dao.DarbuotojasDAO;
 import jpa.dao.SuniukasDAO;
 import jpa.dao.ViesbutisDAO;

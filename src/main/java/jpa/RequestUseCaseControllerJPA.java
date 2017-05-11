@@ -1,6 +1,6 @@
 package jpa;
 
-
+import interceptors.*;
 import jpa.dao.DarbuotojasDAO;
 import jpa.dao.SuniukasDAO;
 import jpa.model.Darbuotojas;
@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.interceptor.Interceptor;
+import javax.interceptor.Interceptors;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -28,8 +30,8 @@ public class RequestUseCaseControllerJPA {
     @Inject
     private DarbuotojasDAO darbDAO;
 
-
     @Transactional
+    @loggingInterceptor
     public void sukurkSuniukaDarbuotoja() {
 
         darbuotojas.getSuniukasList().add(suniukas);

@@ -1,5 +1,6 @@
 package suniukai;
 
+import interceptors.loggingInterceptor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import suniukai.dao.DarbuotojasMapper;
@@ -36,6 +37,7 @@ public class RequestUseCaseControllerMyBatis {
     }
 
     @Transactional
+    @loggingInterceptor
     public void createDarbuotojasSuniukas() {
         darbuotojasMapper.insert(darbuotojas);
         suniukasMapper.insert(suniukas);

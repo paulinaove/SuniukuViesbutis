@@ -6,4 +6,21 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
 
+        <interceptors>
+            <class>interceptors.loggingInterceptorImplement</class>
+        </interceptors>
+
+        <decorators>
+            <class>decorator.UserDecorator</class>
+        </decorators>
+
+
+        <alternatives>
+            <class>decorator.Tester</class>
+        </alternatives>
+
+
+
+
+
 </beans>
